@@ -23,13 +23,15 @@ class Solution {
 //             nums1[p]=arr[p];
 //         }
        
-        for ( int i = 0 ;i<m ;i++){
-            nums1[k++] = nums1[i];
-           
+        for ( int i = 0 ;i<m+n ;i++){
+            if(i<m)
+                nums1[k++] = nums1[i]; 
+            else
+                nums1[k++]=nums2[i-m];
         }
-        for (int i =0; i< n ; i++){
-            nums1[k++] = nums2[i];
-        }
+        // for (int i =0; i< n ; i++){
+        //     nums1[k++] = nums2[i];
+        // }
         Arrays.sort(nums1);
     }
 }
