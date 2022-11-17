@@ -36,6 +36,7 @@ Code
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+ // Solution one by using iteration
 class Solution {
     public ListNode swapPairs(ListNode head) {
         if ( head == null)
@@ -53,5 +54,23 @@ class Solution {
             prevNode = node1;
         }
         return newHead.next;
+    }
+}
+
+// solution 2 by resursion
+
+class Solution {
+    public ListNode swapPairs(ListNode head) {
+        if ( head == null || head.next == null)
+        return head;
+            ListNode node1 = head;
+            ListNode node2 = head.next;
+            ListNode nextNode = node2.next;
+            node1.next = nextNode;
+            node2.next = node1;
+            if (nextNode != null){
+                node1.next = swapPairs(nextNode);
+            }
+            return node2;
     }
 }
