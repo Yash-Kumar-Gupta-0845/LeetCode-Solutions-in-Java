@@ -1,36 +1,19 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        int[][] arr = new int[intervals.length+1][2];
-        if(intervals.length<1){
-            arr[0][0] = newInterval[0];
-            arr[0][1]= newInterval[1];
-            return arr;
-        }
-        
-        for(int i = 0;i<intervals.length;i++){
-            for(int  j = 0;j<intervals[i].length;j++){
-                arr[i][j] = intervals[i][j];
-            }
-        }
-        arr[arr.length-1][0]= newInterval[0];
-        arr[arr.length-1][1]=newInterval[1];
-        java.util.Arrays.sort(arr, new java.util.Comparator<int[]>() {
-    public int compare(int[] a, int[] b) {
-        return Integer.compare(a[0], b[0]);
-    }
-});
-
-        List<int[]> list = new ArrayList<>();
-        int[] curr = arr[0];
-        list.add(curr);
-        for(int[] next : arr){
-            if(curr[1] >= next[0]) curr[1] = Math.max(curr[1],next[1]);
-            else{
-                curr = next;
-                list.add(curr);
-            }
-        }
-        
-       return list.toArray(new int[list.size()][]);
+        int n = intervals.length;
+        int l = 0;
+        int r = n-1;
+        while(l < n && newInterval[0] > intervals[l][1])
+            l++;
+        while(r >= 0 && newInterval[1] < intervals[r][0])
+            r--;
+        int [][]res = new int[l + n -r][2];
+        for(int i = 0; i< l; i++)
+            res[i] = Arrays.copyOf(intervals[i], intervals[i].length);
+        res[l][0] = Math.min(newInterval[0], l == n ? newInterval[0] : intervals[l][0]);
+        res[l][1] = Math.max(newInterval[1], r == -1 ? newInterval[1]: intervals[r][1]);
+        for(int i = l+1, j = r+1; j < n ; i++,j++ )
+            res[i] = intervals[j];
+        return res;
     }
 }
