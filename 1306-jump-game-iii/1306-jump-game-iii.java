@@ -3,6 +3,7 @@ class Solution {
         if (start >= 0 && start < arr.length && arr[start] >= 0){
             if (arr[start] == 0)
                 return true;
+            // left traversal by subtracting the start values
             arr[start] = -arr[start];
             return canReach(arr, start+arr[start]) || canReach(arr, start-arr[start]);
         }
