@@ -1,16 +1,22 @@
 class Solution {
     public int numSquares(int n) {
-        int dp[] = new int[n+1];
-        // i represent main subsolution j represent subsub solution 
-        Arrays.fill(dp, n);
-        dp[0] = 0;
-        dp[1] = 1;
-        for(int i = 1 ; i <= n ; i++){
-            for (int j = 1; j*j <= i ; j++){
-                if (i - j*j >= 0)
-                    dp[i] = Math.min(dp[i-j*j]+1, dp[i]);
+        while(n % 4 == 0){
+            n = n / 4;
+        }
+        if(n % 8 == 7){
+            return 4;
+        }
+        for(int x = 0; x * x <= n; x++){
+            int y = (int)Math.sqrt(n - x*x);
+            if(x * x + y * y == n){
+                if(x == 0 || y == 0){
+                    return 1;
+                }
+                else{
+                    return 2;
+                }
             }
         }
-        return dp[n];
+        return 3;
     }
 }
