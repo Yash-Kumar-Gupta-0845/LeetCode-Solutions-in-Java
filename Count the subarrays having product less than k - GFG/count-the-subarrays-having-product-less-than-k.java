@@ -43,7 +43,7 @@ class Solution {
     public int countSubArrayProductLessThanK(long a[], int n, long k)
     {
         int count = 0;
-        int i, j;long mul;
+        int i, j; long mul;
  
         for (i = 0; i < n; i++) {
  
@@ -68,6 +68,5 @@ class Solution {
         }
  
         return count;
-
     }
 }
