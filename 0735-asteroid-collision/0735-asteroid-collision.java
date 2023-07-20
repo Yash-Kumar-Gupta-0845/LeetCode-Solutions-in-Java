@@ -1,6 +1,6 @@
 class Solution {
     public int[] asteroidCollision(int[] a) {
-        int top = -1;
+         int top = -1;
         for (int x : a) {
             boolean stillAlive = true; 
             while (stillAlive && x < 0 && top >= 0 && a[top] > 0) {
