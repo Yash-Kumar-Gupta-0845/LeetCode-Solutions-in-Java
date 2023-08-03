@@ -11,7 +11,6 @@ class Solution {
             put("9","wxyz");
         }};
     List<String> list = new ArrayList<String>();
-    // Creating backtrack
     public void backtrack(String comb, String nextDigit){
         if (nextDigit.length() == 0)
             list.add(comb);
